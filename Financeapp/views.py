@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import *
 from .forms import CategoryForm, TransactionForm, BudgetForm
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
@@ -17,6 +17,14 @@ def TransactionPage(request):
 def transaction_list(request):
     transactions = Transaction.objects.all().order_by('-date')
     return render(request, 'app/transaction_list.html', {'transactions': transactions})
+
+class TransactionDetailView(DetailView):
+    model = Transaction
+    template_name = 'app/transaction_detail.html'
+    context_object_name = 'transaction'
+
+    def get_queryset(self):
+        return Transaction.objects.all().order_by('-date')
 
 def transaction_create(request):
     if request.method == 'POST':
