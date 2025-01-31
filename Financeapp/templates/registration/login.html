@@ -1,19 +1,13 @@
-{% extends 'app/home.html' %}
+{% extends 'app/base.html' %}
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/login.css' %}">
 <h2>Login</h2>
 <form method="post">
   {% csrf_token %}
- <div class="mainContainer">
-            <label for="username">Your username</label>
-            <input type="text" placeholder="Enter Username" name="username" required>
-            <br><br>
-            <label for="pswrd">Your password</label>
-            <input type="password" placeholder="Enter Password" name="pswrd" required>
-            <div class="subcontainer">
-            </div>
-            <button type="submit">Login</button>
-        </div>
+  <div class="container">
+    {{form.as_p}}
+  </div>
+  <button type="submit">Login</button>
 </form>
 {% endblock content %}
