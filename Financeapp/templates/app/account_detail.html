@@ -1,0 +1,10 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/budget.css' %}">
+        <div class="post-entry">
+            <h2><a href="">{{account.account}}</a></h2>
+            <p>{{account.balance}}</p>
+        </div>
+
+{% endblock content %}

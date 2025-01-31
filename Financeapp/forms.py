@@ -1,5 +1,5 @@
 from django import forms
-from .models import Category, Transaction, Budget
+from .models import Category, Transaction, Budget, SavingGoal, Account
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -21,3 +21,17 @@ class BudgetForm(forms.ModelForm):
     class Meta:
         model = Budget
         fields = ['amount', 'start_date', 'end_date']
+
+
+class SavingGoalForm(forms.ModelForm):
+    class Meta:
+        model = SavingGoal
+        fields = ['target_amount', 'current_amount', 'description', 'target_date']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 3}),
+        }
+
+class AccountForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ['account', 'balance']

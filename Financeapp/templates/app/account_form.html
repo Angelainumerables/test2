@@ -1,0 +1,14 @@
+{% block content %}
+<div class="container">
+    <h1>{% if account %}Edit Account{% else %}Create New Account{% endif %}</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">
+            {% if account %}Update Account{% else %}Create New Account{% endif %}
+        </button>
+        <a href="{% url 'account_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
